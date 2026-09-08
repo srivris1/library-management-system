@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-let rawUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const defaultUrl = import.meta.env.PROD
+  ? 'https://library-management-system-w4rx.onrender.com/api'
+  : 'http://localhost:5000/api';
+
+let rawUrl = import.meta.env.VITE_API_URL || defaultUrl;
 if (!rawUrl.endsWith('/api')) {
   rawUrl = rawUrl.replace(/\/+$/, '') + '/api';
 }
