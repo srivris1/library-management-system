@@ -32,6 +32,17 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
+// Auto-connect to DB on incoming requests (serverless friendly)
+app.use(async (req, res, next) => {
+  if (req.path === '/api/health') return next();
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 // ==================== API Routes ====================
 app.get('/api/health', (req, res) => {
   res.json({
