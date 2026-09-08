@@ -2,7 +2,7 @@ services:
   - type: web
     name: library-management-api
     runtime: node
-    buildCommand: cd server && npm install
+    buildCommand: cd server && npm install && node scripts/download-mongo-binary.mjs
     startCommand: cd server && npm start
     envVars:
       - key: NODE_ENV
@@ -16,4 +16,8 @@ services:
       - key: FINE_PER_DAY
         value: 5
       - key: GEMINI_API_KEY
+        sync: false
+      - key: MONGOMS_VERSION
+        value: 7.0.0
+      - key: MONGOMS_SYSTEM_BINARY
         sync: false

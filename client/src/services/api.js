@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const defaultUrl = import.meta.env.PROD
-  ? 'https://library-management-system-w4rx.onrender.com/api'
+  ? '/api'
   : 'http://localhost:5000/api';
 
 let rawUrl = import.meta.env.VITE_API_URL || defaultUrl;
